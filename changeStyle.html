@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="js/custom.js" type="text/javascript"></script> -->
+    <script type="text/javascript">
+      function changeStyle() {
+        first_H1 = document.getElementById("first");
+
+        first_H1.style.color = "red";
+      }
+      function changeBackColor() {
+        //first_H1 = document.getElementById('first');
+        first_H1.style.backgroundColor = "yellow";
+      }
+    </script>
+  </head>
+  <body>
+    <h1 id="first">Welcome to JS World....</h1>
+    <h1 id="second">Second H1 tag....</h1>
+    <button type="submit" onclick="changeStyle(),changeBackColor()">
+      Change Style
+    </button>
+  </body>
+</html>

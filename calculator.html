@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box
+        {
+            width: 500px;
+            min-height: 200px;
+            margin: 120px auto;
+
+        }
+    
+    </style>
+    <script type="text/javascript">
+
+        function clearAllFields(){
+            document.getElementById('n1').value = "";
+            document.getElementById('n2').value = "";
+            document.getElementById('res').value = "";
+
+            document.getElementById('n1').focus();
+        }
+        function setFocusOnLoad(){
+            document.getElementById('n1').focus();
+        }
+        function checkEmptyFields(){
+            if(document.getElementById('n1').value.length == 0)
+            {
+                alert('please enter first number');
+                document.getElementById('n1').focus();
+            }
+            else if(document.getElementById('n2').value.length == 0)
+            {
+                alert('please enter second number');
+                document.getElementById('n2').focus();
+            }
+
+        }
+        function doTask(){
+            checkEmptyFields();
+            var txtfirst =  parseInt(document.getElementById('n1').value);
+            var txtsecond =  parseInt(document.getElementById('n2').value);
+            var result = txtfirst + txtsecond;
+            document.getElementById('res').value = result;
+
+        }
+    </script>
+</head>
+<body onload="setFocusOnLoad()">
+    <div class="box">
+        <h1>Calculator App using JS</h1>
+        <table>
+            <tr>
+                <td>Enter first Number</td>
+                <td><input type="text" id="n1" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>Enter Second Number</td>
+                <td><input type="text" id="n2" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>Operation Result</td>
+                <td><input type="text" id="res" autocomplete="off" readonly></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><button type="submit" onclick="doTask()">Addition</button>
+                    <button type="submit" onclick="clearAllFields()">Clear</button>
+
+                </td> 
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
