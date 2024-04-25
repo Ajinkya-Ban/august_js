@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .box
+        {
+            width: 450px;
+            height: 270px;
+            border: 10px solid #000;
+            margin: 140px auto;
+
+            border-top-left-radius: 40%;
+            border-bottom-right-radius: 40%;
+            border-left: 0;
+            border-right: 0;
+            border-top-color: orange;
+            border-bottom-color: green;
+        }
+        .box h1{
+
+            padding: 10px;
+            text-align: center;
+        }
+        .app{
+            padding: 40px;
+        }
+        input[type=button]{
+            width: 83px;
+            height: 25px;
+            margin-top: 6px;
+        }
+        select{
+            width: 173px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function clearAllFields(){
+            //event handler
+          
+            document.getElementById('n1').value = "";
+            document.getElementById('n2').value = "";
+            document.getElementById('res').value = "";
+            document.getElementById('op').value = "select";
+            document.getElementById('n1').focus();
+
+        }
+
+        function focusCursor()
+        {
+            document.getElementById('n1').focus();
+            // document.getElementById('n1').style.backgroundColor='yellow';
+        }
+
+        function checkEmptyFields()
+        {
+            if(document.getElementById('n1').value == "")
+            {
+                alert('please enter first number.');
+                document.getElementById('n1').focus();
+                // document.getElementById('n1').style.backgroundColor='yellow';
+            }
+            else if(document.getElementById('n2').value == "")
+            {
+                alert('please enter second  number.');
+                document.getElementById('n2').focus();
+            }
+            else if(document.getElementById('op').value=='select')
+            {
+                alert('please select atleast one operation');
+                document.getElementById('op').focus();
+            }
+        }
+
+        function doTask(){
+
+            checkEmptyFields();
+            txtfirstnum = document.getElementById('n1').value;
+            txtsecondnum = document.getElementById('n2').value;
+            drpOp = document.getElementById('op').value;
+            
+            switch(drpOp)
+            {
+                case '+':
+                  var result = parseInt(txtfirstnum) + parseInt(txtsecondnum);
+                    document.getElementById('res').value = result;
+                break;
+
+                case '-':
+                  var result = parseInt(txtfirstnum) - parseInt(txtsecondnum);
+                    document.getElementById('res').value = result;
+                break;
+
+                case '*':
+                  var result = parseInt(txtfirstnum) * parseInt(txtsecondnum);
+                    document.getElementById('res').value = result;
+                break;
+
+                case '/':
+                  var result = parseInt(txtfirstnum) / parseInt(txtsecondnum);
+                    document.getElementById('res').value = result;
+                break;
+
+            }
+
+
+        }
+        function button_Disable_OnLoadPage()
+        {
+            const doTaskbtn = document.getElementById('btnadd');
+            doTaskbtn.disabled =  true;
+        }
+        function isnumber(e)
+        {
+            var ch = String.fromCharCode(e.which);
+            if(!(/[0-9]/.test(ch)))
+            {
+                e.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body onload="focusCursor();button_Disable_OnLoadPage()">
+    
+    <!-- This code can be used for add shortcuts to your controls -->
+   
+    <div class="box">
+        <h1>
+            Calculator App 
+        </h1>
+
+        <div class="app">
+        <table>
+            <tr>
+                <td>Enter the first Number</td>
+                <td>
+                    <input type="text" id="n1" name="n1" autocomplete="off" onkeypress="isnumber(event)">
+                </td>
+            </tr>
+            <tr>
+                <td>Enter the second Number</td>
+                <td>
+                    <input type="text" id="n2" name="n2" autocomplete="off">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Select Operation</td>
+                <td>
+                    <select id="op">
+                        <option value="select">Select Option</option>
+                        <option value="+">Addition</option>
+                        <option value="-">Subtraction</option>
+                        <option value="*">Multiplication</option>
+                        <option value="/">Divide</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Result are</td>
+                <td>
+                    <input type="text" id="res" name="res" readonly>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                   <input type="button" id="btnadd" value="Do Task" onclick="doTask()">
+                   <input type="button" id="btnclear" value="Clear All" onclick="clearAllFields()">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const txtfirstnum1 = document.getElementById('n1');
+    const doTaskbtn = document.getElementById('btnadd');
+
+    document.onkeydown = function(e)
+    {
+        if(e.altKey && e.which == 67)
+        {
+            clearAllFields();
+        }
+    }
+
+    txtfirstnum1.addEventListener("keyup", function(){
+
+        if(txtfirstnum1.value.length > 0)
+        {
+            doTaskbtn.disabled = false;
+        }
+        else
+        {
+            doTaskbtn.disabled = true;
+        }
+
+    });
+    
+
+</script>
+</body>
+</html>
